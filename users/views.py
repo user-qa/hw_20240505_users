@@ -7,6 +7,9 @@ from users.models import UserModel
 
 def UserListView(request):
     users = UserModel.objects.all()
+    q = request.GET.get('q')
+    if q:
+        users = users.filter(full_name__icontains = q)
     context = {
         'users': users,
     }
@@ -20,17 +23,12 @@ def UserRegisterView(request):
 
         if form.is_valid():
             form.save()
-
-            return redirect('users:register')
+            return redirect('users:list')
         else:
             return HttpResponse('We Could Not Add The User To Our Database!')
 
     else:
-        form = UserModelForms()
-        context = {
-            'form': form
-        }
-        return render(request, 'user-register.html', context=context)
+        return render(request, 'user-register.html')
 
 
 def UserDetailView(request, pk):
@@ -55,3 +53,4 @@ def UserDownloadView(request, pk):
                 return response
     else:
         return HttpResponse('User Could Not Be Found!')
+
