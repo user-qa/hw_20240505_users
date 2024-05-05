@@ -1,0 +1,51 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container">
+    <h2>Register</h2>
+    <form action="{% url 'users:list' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name" required>
+
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="phone_number">Phone Number</label>
+        <input type="text" id="phone_number" name="phone_number" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="region">Region</label>
+        <select id="region" name="region" required>
+            <option value="">Select Region</option>
+            <option value="Andijon">Andijon</option>
+            <option value="Buxoro">Buxoro</option>
+            <option value="Fargʻona">Fargʻona</option>
+            <option value="Jizzax">Jizzax</option>
+            <option value="Xorazm">Xorazm</option>
+            <option value="Namangan">Namangan</option>
+            <option value="Navoiy">Navoiy</option>
+            <option value="Qashqadaryo">Qashqadaryo</option>
+            <option value="Samarqand">Samarqand</option>
+            <option value="Sirdaryo">Sirdaryo</option>
+            <option value="Surxondaryo">Surxondaryo</option>
+            <option value="Toshkent Shahri">Toshkent Shahri</option>
+            <option value="Toshkent viloyati">Toshkent viloyati</option>
+        </select>
+
+        <label for="certificate">Certificate</label>
+        <input type="file" id="certificate" name="certificate" required>
+
+        <input type="submit" value="submit">
+    </form>
+</div>
+</body>
+</html>
